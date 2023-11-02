@@ -1,8 +1,7 @@
 
-
 import React from 'react'
 import {Note} from './note'
-import {WriteNote} from './NewNote'
+import { WriteNote } from './NewNote';
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
@@ -18,19 +17,6 @@ async function getNotes() {
   }
 
 
-async function getData() {
-    const res = await fetch('https://swapi.dev/api/people/1')
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
-   console.log("******", res);
-    if (!res.ok) {
-      // This will activate the closest error.js Error Boundary
-      throw new Error('Failed to fetch data')
-    }
-   
-    return res.json()
-  }
-
 
  const MyNotes = ({data}) => {
     return (
@@ -39,6 +25,7 @@ async function getData() {
          <ul>
             {data.map(n => <li><Note note={n.note} /></li>)}
          </ul>
+         <WriteNote />
         </>
 
     )
@@ -50,5 +37,6 @@ export default async function Page() {
     return <MyNotes data={data} />
   }
  
+
 
 
